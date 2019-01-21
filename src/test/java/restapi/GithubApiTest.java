@@ -3,14 +3,13 @@ package restapi;
 import org.apache.commons.codec.binary.Base64;
 import org.junit.Before;
 import org.junit.Test;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.DefaultUriBuilderFactory;
 
 import java.nio.charset.Charset;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class GithubApiTest {
     private RestTemplate restTemplate;
@@ -23,12 +22,13 @@ public class GithubApiTest {
     }
 
     @Test
-    public void rate_limit() {
+    public void getUser() {
         ResponseEntity<String> result = restTemplate.exchange
-                ("/rate_limit",
+                ("/user",
                         HttpMethod.GET,
                         new HttpEntity<String>(defaultUser()),
                         String.class);
+        assertThat(result.getStatusCode()).isEqualTo(HttpStatus.OK);
         System.out.println(result.getBody());
     }
 
@@ -46,4 +46,3 @@ public class GithubApiTest {
         }};
     }
 }
-
