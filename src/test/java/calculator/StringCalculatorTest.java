@@ -6,12 +6,14 @@ import support.test.BaseTest;
 public class StringCalculatorTest extends BaseTest {
     @Test
     public void 덧셈() {
+        softly.assertThat(StringCalculator.calculate("1 + 2")).isEqualTo(3);
 
+        softly.assertThat(StringCalculator.calculate("3 + 2")).isEqualTo(5);
     }
 
     @Test
     public void 뺄셈() {
-
+        softly.assertThat(StringCalculator.calculate("3 - 2")).isEqualTo(1);
     }
 
     @Test
