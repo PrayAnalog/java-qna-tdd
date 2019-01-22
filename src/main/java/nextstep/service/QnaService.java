@@ -37,8 +37,14 @@ public class QnaService {
 
     @Transactional
     public Question update(User loginUser, long id, Question updatedQuestion) {
-        // TODO 수정 기능 구현
-        return null;
+
+        Question targetQuestion = questionRepository.findById(id).get();
+        targetQuestion.update(updatedQuestion);
+//        targetQuestion.setContents(updatedQuestion.getContents());
+
+        log.debug("question : {}", targetQuestion);
+        return questionRepository.save(targetQuestion);
+
     }
 
     @Transactional
