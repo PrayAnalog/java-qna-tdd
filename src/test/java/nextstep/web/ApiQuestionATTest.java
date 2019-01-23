@@ -66,9 +66,9 @@ public class ApiQuestionATTest {
         question.setContents(changedContents);
 //
 
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON);
-        HttpEntity<Question> entity = new HttpEntity(question, headers);
+//        HttpHeaders headers = new HttpHeaders();
+//        headers.setContentType(MediaType.APPLICATION_JSON);
+        HttpEntity<Question> entity = new HttpEntity(question);
         ResponseEntity<String> responseEntity = restTemplate.exchange(location, HttpMethod.PUT, entity, String.class);
         assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
 
